@@ -10,26 +10,25 @@ function quoteGenerator(){
 
 	    document.getElementById("quote").innerHTML = data[randomNumber].text;
 	    document.getElementById("author").innerHTML = data[randomNumber].author;
+
+	    //automatically copies quotes to clipboard
+		    	var text = document.getElementById("quote").innerHTML = data[randomNumber].text;
+				navigator.clipboard.writeText(text).then(function() {
+					alert("Copied to clipboard");
+				  //console.log('Async: Copying to clipboard was successful!');
+				}, function(err) {
+				  console.error('Async: Could not copy text: ', err);
+				});
+
 	  });
 }
 
 quoteGenerator();
 
-function doFunction(){
+function changeQuote(){
 	quoteGenerator();
 }
 
-function myFunction() {
-  /* Get the text field */
-  var copyText = document.getElementById("quote");
 
-  /* Select the text field */
-  copyText.select();
-  copyText.setSelectionRange(0, 99999); /*For mobile devices*/
 
-  /* Copy the text inside the text field */
-  document.execCommand("copy");
 
-  /* Alert the copied text */
-  alert("Copied the text: " + copyText.value);
-}
